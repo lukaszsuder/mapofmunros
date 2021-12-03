@@ -59779,10 +59779,9 @@ var munrosApi = /*#__PURE__*/function () {
               }).setLngLat(currentFeature.coordinates).setHTML("<h3>".concat(currentFeature.name, "</h3><h4>").concat(currentFeature.height, " m</h4><p>").concat(currentFeature.meaning, "</p>")).addTo(map);
               var closeBtn = document.querySelector('.mapboxgl-popup-close-button');
               closeBtn.addEventListener('click', function () {
-                return map.flyTo({
-                  //center: MAP_CENTER,
-                  zoom: _config.MAP_FLYTO_ZOOM_OUT,
-                  speed: _config.MAP_FLYOUT_SPEED
+                return map.flyTo({//center: MAP_CENTER,
+                  //zoom: MAP_FLYTO_ZOOM_OUT,
+                  //speed: MAP_FLYOUT_SPEED,
                 });
               });
             };
@@ -60189,7 +60188,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56860" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52492" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

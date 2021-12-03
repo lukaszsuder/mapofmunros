@@ -292,8 +292,8 @@ Sortowanie poniżej działa. Wystarczy teraz napisać powyższą funkcję i będ
         closeBtn.addEventListener('click', () =>
           map.flyTo({
             //center: MAP_CENTER,
-            zoom: MAP_FLYTO_ZOOM_OUT,
-            speed: MAP_FLYOUT_SPEED,
+            //zoom: MAP_FLYTO_ZOOM_OUT,
+            //speed: MAP_FLYOUT_SPEED,
           })
         );
       }
