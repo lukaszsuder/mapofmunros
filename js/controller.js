@@ -76,17 +76,46 @@ const munrosApi = async function () {
       };
 
       map.on('load', () => {
-        /* Add the data to your map as a layer */
-        map.addSource('places', {
-          type: 'geojson',
-          data: stores,
-        });
-
-        // addMarkers2(munrosList);
-        // buildLocationList2(munrosList);
+        map.addSource(
+          'dem',
+          {
+            type: 'raster-dem',
+            url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+          },
+          'places',
+          {
+            type: 'geojson',
+            data: stores,
+          }
+        );
+        map.addLayer(
+          {
+            id: 'hillshading',
+            source: 'dem',
+            type: 'hillshade',
+            // insert below waterway-river-canal-shadow;
+            // where hillshading sits in the Mapbox Outdoors style
+          },
+          'waterway-river-canal-shadow'
+        );
         addMarkers2(munrosList2);
         buildLocationList2(munrosList2);
       });
+
+      // MAP WITHOUT SHADING
+      // map.on('load', () => {
+      //   /* Add the data to your map as a layer */
+      //   map.addSource('places', {
+      //     type: 'geojson',
+      //     data: stores,
+      //   });
+
+      //   // addMarkers2(munrosList);
+      //   // buildLocationList2(munrosList);
+      //   addMarkers2(munrosList2);
+      //   buildLocationList2(munrosList2);
+      // });
+      // END  MAP WITHOUT SHADING
 
       function addMarkers2(munros) {
         /* For each feature in the GeoJSON object above: */

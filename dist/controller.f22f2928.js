@@ -134,7 +134,8 @@ var MAP_MARKER_COLOR = 'black';
 exports.MAP_MARKER_COLOR = MAP_MARKER_COLOR;
 var MAP_MARKER_SCALE = 0.5;
 exports.MAP_MARKER_SCALE = MAP_MARKER_SCALE;
-var MAP_STYLE = 'mapbox://styles/mapbox/outdoors-v11';
+var MAP_STYLE = 'mapbox://styles/mapbox/cjaudgl840gn32rnrepcb9b9g'; //export const MAP_STYLE = 'mapbox://styles/mapbox/outdoors-v11';
+
 exports.MAP_STYLE = MAP_STYLE;
 var MAP_ZOOM = 7;
 exports.MAP_ZOOM = MAP_ZOOM;
@@ -59995,16 +59996,35 @@ var munrosApi = /*#__PURE__*/function () {
               features: []
             };
             map.on('load', function () {
-              /* Add the data to your map as a layer */
-              map.addSource('places', {
+              map.addSource('dem', {
+                type: 'raster-dem',
+                url: 'mapbox://mapbox.mapbox-terrain-dem-v1'
+              }, 'places', {
                 type: 'geojson',
                 data: stores
-              }); // addMarkers2(munrosList);
-              // buildLocationList2(munrosList);
+              });
+              map.addLayer({
+                id: 'hillshading',
+                source: 'dem',
+                type: 'hillshade' // insert below waterway-river-canal-shadow;
+                // where hillshading sits in the Mapbox Outdoors style
 
+              }, 'waterway-river-canal-shadow');
               addMarkers2(munrosList2);
               buildLocationList2(munrosList2);
-            });
+            }); // MAP WITHOUT SHADING
+            // map.on('load', () => {
+            //   /* Add the data to your map as a layer */
+            //   map.addSource('places', {
+            //     type: 'geojson',
+            //     data: stores,
+            //   });
+            //   // addMarkers2(munrosList);
+            //   // buildLocationList2(munrosList);
+            //   addMarkers2(munrosList2);
+            //   buildLocationList2(munrosList2);
+            // });
+            // END  MAP WITHOUT SHADING
 
           case 26:
             _context.next = 32;

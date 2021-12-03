@@ -5,6 +5,10 @@ body {
   box-sizing: border-box;
   padding: 3rem; }
 
+.container {
+  margin: 0;
+  padding: 0; }
+
 h1 {
   font-size: 22px;
   margin: 0;
@@ -107,16 +111,9 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
   overflow: hidden;
   border-right: 1px solid rgba(0, 0, 0, 0.3); }
 
-.sidebar__listings__item--click::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  content: ' '; }
-
-.sidebar__listings__item {
-  position: relative; }
+header {
+  border-bottom: 0.1rem solid rgba(197, 197, 197, 0.3);
+  padding-bottom: 1rem; }
 
 .sidebar__logo {
   padding-top: 1rem; }
@@ -128,11 +125,23 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
   border: 1px solid #ceea20ec;
   box-shadow: rgba(0, 0, 0, 0.1) 5px 3px 8px; }
 
+.sidebar__listings__item--click::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: ' '; }
+
+.sidebar__listings__item {
+  position: relative; }
+
 .sidebar__listings {
   height: 80%;
   overflow: auto;
   padding-bottom: 10rem;
-  padding-left: 10px; }
+  padding-left: 10px;
+  border-bottom: 2px solid black; }
 
 .sidebar__listings .sidebar__listings__item {
   border-bottom: 1px solid #eee;
@@ -168,7 +177,8 @@ small {
   background-color: #f8f8f8; }
 
 .sidebar__listings .sidebar__listings__item:hover {
-  background-color: #ceea20ec; }
+  background-color: #ceea20ec;
+  transition: background-color 0.2s; }
 
 ::-webkit-scrollbar {
   width: 1rem;

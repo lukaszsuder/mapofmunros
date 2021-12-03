@@ -11,6 +11,22 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
   border-right: 1px solid rgba(0, 0, 0, 0.3);
 }
 
+header {
+  border-bottom: 0.1rem solid rgba(197, 197, 197, 0.3);
+  padding-bottom: 1rem;
+}
+
+.sidebar__logo {
+  padding-top: 1rem;
+}
+
+.sidebar__search {
+  margin: 1.5rem;
+  padding: 1rem;
+  width: 90%;
+  border: 1px solid $color-primary-light;
+  box-shadow: rgba(0, 0, 0, 0.1) 5px 3px 8px;
+}
 // CLickable area
 .sidebar__listings__item--click::after {
   position: absolute;
@@ -26,23 +42,13 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
   position: relative;
 }
 // END clickable area
-.sidebar__logo {
-  padding-top: 1rem;
-}
-
-.sidebar__search {
-  margin: 1.5rem;
-  padding: 1rem;
-  width: 90%;
-  border: 1px solid $color-primary-light;
-  box-shadow: rgba(0, 0, 0, 0.1) 5px 3px 8px;
-}
 
 .sidebar__listings {
   height: 80%;
   overflow: auto;
   padding-bottom: 10rem;
   padding-left: 10px;
+  border-bottom: 2px solid black;
 }
 
 .sidebar__listings .sidebar__listings__item {
@@ -87,6 +93,9 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
 
 .sidebar__listings .sidebar__listings__item:hover {
   background-color: $color-primary-light;
+  //transform: translateY(-2px);
+
+  transition: background-color 0.2s;
 }
 
 ::-webkit-scrollbar {
