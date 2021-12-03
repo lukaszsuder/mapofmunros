@@ -123,7 +123,13 @@ header {
   padding: 1rem;
   width: 90%;
   border: 1px solid #ceea20ec;
-  box-shadow: rgba(0, 0, 0, 0.1) 5px 3px 8px; }
+  box-shadow: rgba(0, 0, 0, 0.1) 5px 3px 8px;
+  font-size: 1rem;
+  pointer-events: none; }
+
+::placeholder {
+  color: rgba(0, 0, 0, 0.432);
+  font-size: 1rem; }
 
 .sidebar__listings__item--click::after {
   position: absolute;

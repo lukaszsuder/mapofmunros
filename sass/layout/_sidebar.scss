@@ -26,6 +26,14 @@ header {
   width: 90%;
   border: 1px solid $color-primary-light;
   box-shadow: rgba(0, 0, 0, 0.1) 5px 3px 8px;
+  font-size: 1rem;
+  pointer-events: none; // Serch field blocker
+}
+
+// Currently not working placeholder
+::placeholder {
+  color: rgba(0, 0, 0, 0.432);
+  font-size: 1rem;
 }
 // CLickable area
 .sidebar__listings__item--click::after {
