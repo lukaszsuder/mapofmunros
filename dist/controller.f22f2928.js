@@ -125,7 +125,7 @@ module.exports = "/icons.a0140bae.svg";
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.MAP_ZOOM = exports.MAP_STYLE = exports.MAP_MARKER_SCALE = exports.MAP_MARKER_COLOR = exports.MAP_KEY = exports.MAP_FLYTO_ZOOM = exports.MAP_FLYOUT_SPEED = exports.MAP_CENTER = void 0;
+exports.MAP_ZOOM = exports.MAP_STYLE = exports.MAP_MARKER_SCALE = exports.MAP_MARKER_COLOR = exports.MAP_KEY = exports.MAP_FLYTO_ZOOM_OUT = exports.MAP_FLYTO_ZOOM = exports.MAP_FLYOUT_SPEED = exports.MAP_CENTER = void 0;
 var MAP_KEY = 'pk.eyJ1IjoibHVrYXN6c3VkZXIxOTgwIiwiYSI6ImNrdzB2emdreTA1aW8zMW1venQ3cWF0dmQifQ.DMKrgh2Qgw-69nX5Fuqodw';
 exports.MAP_KEY = MAP_KEY;
 var MAP_CENTER = [-4.593644, 57.04581];
@@ -140,6 +140,8 @@ var MAP_ZOOM = 7;
 exports.MAP_ZOOM = MAP_ZOOM;
 var MAP_FLYTO_ZOOM = 15;
 exports.MAP_FLYTO_ZOOM = MAP_FLYTO_ZOOM;
+var MAP_FLYTO_ZOOM_OUT = 15;
+exports.MAP_FLYTO_ZOOM_OUT = MAP_FLYTO_ZOOM_OUT;
 var MAP_FLYOUT_SPEED = 10;
 exports.MAP_FLYOUT_SPEED = MAP_FLYOUT_SPEED;
 },{}],"node_modules/mapbox-gl/dist/mapbox-gl.js":[function(require,module,exports) {
@@ -59777,8 +59779,8 @@ var munrosApi = /*#__PURE__*/function () {
               var closeBtn = document.querySelector('.mapboxgl-popup-close-button');
               closeBtn.addEventListener('click', function () {
                 return map.flyTo({
-                  center: _config.MAP_CENTER,
-                  zoom: _config.MAP_ZOOM,
+                  //center: MAP_CENTER,
+                  zoom: _config.MAP_FLYTO_ZOOM_OUT,
                   speed: _config.MAP_FLYOUT_SPEED
                 });
               });
@@ -59821,14 +59823,15 @@ var munrosApi = /*#__PURE__*/function () {
 
               for (var i = 0; i < sortedArray.length; i++) {
                 var listings = document.getElementById('sidebar__listings');
-                var listing = listings.appendChild(document.createElement('div'));
+                var listing = listings.appendChild(document.createElement('li'));
                 /* Assign the `item` class to each listing for styling. */
 
                 listing.className = 'sidebar__listings__item';
                 listing.id = "listing-".concat(sortedArray[i].id);
                 var link = listing.appendChild(document.createElement('a'));
                 link.href = '#';
-                link.className = 'sidebar__listings__item__title';
+                link.className = 'sidebar__listings__item__title sidebar__listings__item--click'; //link.className = 'sidebar__listings__item__title';
+
                 link.id = "link-".concat(sortedArray[i].id);
                 link.innerHTML = "".concat(sortedArray[i].name, " "); //Event listner when someone click on map or click
 
@@ -60166,7 +60169,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60246" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56860" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

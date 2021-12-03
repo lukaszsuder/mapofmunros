@@ -107,6 +107,17 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
   overflow: hidden;
   border-right: 1px solid rgba(0, 0, 0, 0.3); }
 
+.sidebar__listings__item--click::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: ' '; }
+
+.sidebar__listings__item {
+  position: relative; }
+
 .sidebar__logo {
   padding-top: 1rem; }
 

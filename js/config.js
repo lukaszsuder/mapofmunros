@@ -7,4 +7,5 @@ export const MAP_MARKER_SCALE = 0.5;
 export const MAP_STYLE = 'mapbox://styles/mapbox/outdoors-v11';
 export const MAP_ZOOM = 7;
 export const MAP_FLYTO_ZOOM = 15;
+export const MAP_FLYTO_ZOOM_OUT = 15;
 export const MAP_FLYOUT_SPEED = 10;

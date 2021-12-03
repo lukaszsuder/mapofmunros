@@ -8,6 +8,7 @@ import {
   MAP_STYLE,
   MAP_ZOOM,
   MAP_FLYTO_ZOOM,
+  MAP_FLYTO_ZOOM_OUT,
   MAP_FLYOUT_SPEED,
 } from './config.js';
 
@@ -160,7 +161,7 @@ Sortowanie poniżej działa. Wystarczy teraz napisać powyższą funkcję i będ
 
         for (let i = 0; i < sortedArray.length; i++) {
           const listings = document.getElementById('sidebar__listings');
-          const listing = listings.appendChild(document.createElement('div'));
+          const listing = listings.appendChild(document.createElement('li'));
 
           /* Assign the `item` class to each listing for styling. */
           listing.className = 'sidebar__listings__item';
@@ -168,7 +169,9 @@ Sortowanie poniżej działa. Wystarczy teraz napisać powyższą funkcję i będ
           listing.id = `listing-${sortedArray[i].id}`;
           const link = listing.appendChild(document.createElement('a'));
           link.href = '#';
-          link.className = 'sidebar__listings__item__title';
+          link.className =
+            'sidebar__listings__item__title sidebar__listings__item--click';
+          //link.className = 'sidebar__listings__item__title';
           link.id = `link-${sortedArray[i].id}`;
           link.innerHTML = `${sortedArray[i].name} `;
 
@@ -259,8 +262,8 @@ Sortowanie poniżej działa. Wystarczy teraz napisać powyższą funkcję i będ
 
         closeBtn.addEventListener('click', () =>
           map.flyTo({
-            center: MAP_CENTER,
-            zoom: MAP_ZOOM,
+            //center: MAP_CENTER,
+            zoom: MAP_FLYTO_ZOOM_OUT,
             speed: MAP_FLYOUT_SPEED,
           })
         );
