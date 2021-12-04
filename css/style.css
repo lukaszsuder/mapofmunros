@@ -100,8 +100,10 @@ a:hover {
   to {
     transform: rotate(360deg); } }
 
-/* The page is split between map and sidebar - the sidebar gets 1/3, map
-gets 2/3 of the page. You can adjust this to your personal liking. */
+header {
+  border-bottom: 0.1rem solid rgba(197, 197, 197, 0.3);
+  padding-bottom: 1rem; }
+
 .sidebar {
   position: absolute;
   width: 20%;
@@ -110,81 +112,63 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
   left: 0;
   overflow: hidden;
   border-right: 1px solid rgba(0, 0, 0, 0.3); }
+  .sidebar__logo {
+    padding-top: 1rem; }
+  .sidebar__search {
+    margin: 1.5rem;
+    padding: 1rem;
+    width: 90%;
+    border: 1px solid #ceea20ec;
+    box-shadow: rgba(0, 0, 0, 0.1) 5px 3px 8px;
+    font-size: 1rem;
+    pointer-events: none; }
+  .sidebar__listings {
+    height: 60%;
+    overflow: auto;
+    padding-bottom: 10rem;
+    padding-left: 10px;
+    border-bottom: 1px solid #a8a8a8; }
+    .sidebar__listings__item {
+      position: relative;
+      border-bottom: 1px solid #eee;
+      padding: 10px;
+      text-decoration: none; }
+      .sidebar__listings__item--click::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        content: ' '; }
+      .sidebar__listings__item__title {
+        display: block;
+        color: #8b9115f3;
+        font-weight: 700; }
+        .sidebar__listings__item__title:hover {
+          color: #8b9115f3;
+          transition: background-color 0.2s; }
+      .sidebar__listings__item.active {
+        background-color: #ceea20ec; }
+    .sidebar__listings__item:hover {
+      background-color: #f4ffb0ec; }
+    .sidebar__listings__item:last-child {
+      border-bottom: none; }
+  .sidebar__sort {
+    font-size: 1.6rem;
+    color: #a8a8a8; }
 
 header {
   border-bottom: 0.1rem solid rgba(197, 197, 197, 0.3);
   padding-bottom: 1rem; }
 
-.sidebar__logo {
-  padding-top: 1rem; }
-
-.sidebar__search {
-  margin: 1.5rem;
-  padding: 1rem;
-  width: 90%;
-  border: 1px solid #ceea20ec;
-  box-shadow: rgba(0, 0, 0, 0.1) 5px 3px 8px;
+footer {
   font-size: 1rem;
-  pointer-events: none; }
+  margin: 1.5rem;
+  color: #a8a8a8; }
 
 ::placeholder {
   color: rgba(0, 0, 0, 0.432);
   font-size: 1rem; }
-
-.sidebar__listings__item--click::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  content: ' '; }
-
-.sidebar__listings__item {
-  position: relative; }
-
-.sidebar__listings {
-  height: 80%;
-  overflow: auto;
-  padding-bottom: 10rem;
-  padding-left: 10px;
-  border-bottom: 2px solid black; }
-
-.sidebar__listings .sidebar__listings__item {
-  border-bottom: 1px solid #eee;
-  padding: 10px;
-  text-decoration: none; }
-
-.sidebar__listing .sidebar__listings__item:hover {
-  background-color: #ceea20ec; }
-
-.sidebar__listings .sidebar__listings__item:last-child {
-  border-bottom: none; }
-
-.sidebar__listings .sidebar__listings__item .sidebar__listings__item__title {
-  display: block;
-  color: #8b9115f3;
-  font-weight: 700; }
-
-.sidebar__listings
-.sidebar__listings__item
-.sidebar__listings__item__title
-small {
-  font-weight: 400; }
-
-.sidebar__listings
-.sidebar__listings__item.active
-.sidebar__listings__item__title,
-.sidebar__listings
-.sidebar__listings__item
-.sidebar__listings__item__title:hover {
-  color: #a3be15fe; }
-
-.sidebar__listings .sidebar__listings__item.active {
-  background-color: #f8f8f8; }
-
-.sidebar__listings .sidebar__listings__item:hover {
-  background-color: #ceea20ec;
-  transition: background-color 0.2s; }
 
 ::-webkit-scrollbar {
   width: 1rem;
