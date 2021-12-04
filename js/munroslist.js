@@ -1,5 +1,3 @@
-//https://jsonformatter.curiousconcept.com/
-
 export const munrosList = {
   results: [
     {

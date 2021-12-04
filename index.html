@@ -11,26 +11,36 @@
   </head>
   <body>
     <div class="container">
-      <div class="spinner-bg">
-        <div class="spinner"></div>
-      </div>
       <div class="sidebar">
-        <header>
-          <figure>
-            <img src="./img/mm_logo.png" alt="Logo" class="sidebar__logo" />
-          </figure>
+        <div class="sidebar__header">
+          <header>
+            <figure>
+              <img src="./img/mm_logo.png" alt="Logo" class="logo" />
+            </figure>
+          </header>
+        </div>
+        <div class="sidebar__search">
           <input
             type="text"
             placeholder="Currently not working. Work in progress"
-            class="sidebar__search"
+            class="sidebar__search--input"
           />
-        </header>
-        <ul class="sidebar__listings" id="sidebar__listings"></ul>
+        </div>
+        <div class="sidebar__listings__box">
+          <ul class="sidebar__listings" id="sidebar__listings"></ul>
+        </div>
         <div class="sidebar__sort">Sort by: NAME | HEIGHT | REGION</div>
-        <footer class="footer">Copyrigt Lukasz Suder 2021</footer>
+        <div class="sidebar__footer">
+          <footer>Copyrigt Lukasz Suder 2021</footer>
+        </div>
       </div>
       <div id="map" class="map"></div>
       <script defer src="js/controller.js"></script>
     </div>
+
+    
+      <div class="spinner-bg">
+        <div class="spinner"></div>
+      </div>
   </body>
 </html>

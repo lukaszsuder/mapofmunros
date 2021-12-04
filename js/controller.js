@@ -1,3 +1,5 @@
+// USE AS SCRIPT.JS - draft version. LATER WILL BE CONTROLLER.JS
+
 //import { munrosList } from './munroslist.js';
 import icons from '../img/icons.svg';
 import {
@@ -25,14 +27,14 @@ const munrosList2 = {
 };
 
 // Get spinner and spinner background
-const testSpinner = document.querySelector('.spinner');
-const testSpinnerBg = document.querySelector('.spinner-bg');
+const spinner = document.querySelector('.spinner');
+const spinnerBg = document.querySelector('.spinner-bg');
 
 const munrosApi = async function () {
   try {
     // Spinner ADD
-    testSpinner.classList.add('spinner-show');
-    testSpinnerBg.classList.add('spinner-background');
+    spinner.classList.add('spinner-show');
+    spinnerBg.classList.add('spinner-background');
     const fetchUrl = fetch('https://munroapi.herokuapp.com/munros');
 
     const results = await fetchUrl;
@@ -41,8 +43,8 @@ const munrosApi = async function () {
       return;
     } else {
       // Spinner REMOVE
-      testSpinner.classList.remove('spinner-show');
-      testSpinnerBg.classList.remove('spinner-background');
+      spinner.classList.remove('spinner-show');
+      spinnerBg.classList.remove('spinner-background');
 
       const data = await results.json();
 
@@ -132,9 +134,9 @@ const munrosApi = async function () {
 
           el.addEventListener('click', e => {
             /* Fly to the point */
-            flyToStore2(marker);
+            flyToStore(marker);
             /* Close all other popups and display popup for clicked store */
-            createPopUp2(marker);
+            createPopUp(marker);
             /* Highlight listing in sidebar */
             const activeItem = document.getElementsByClassName('active');
             e.stopPropagation();
@@ -208,8 +210,8 @@ Sortowanie poniżej działa. Wystarczy teraz napisać powyższą funkcję i będ
           link.addEventListener('click', function () {
             for (const feature of sortedArray) {
               if (this.id === `link-${feature.id}`) {
-                flyToStore2(feature);
-                createPopUp2(feature);
+                flyToStore(feature);
+                createPopUp(feature);
               }
             }
 
@@ -228,6 +230,62 @@ Sortowanie poniżej działa. Wystarczy teraz napisać powyższą funkcję i będ
             details.innerHTML += `- ${sortedArray[i].region}`;
           }
         }
+
+      }
+
+      function flyToStore(currentFeature) {
+        map.flyTo({
+          center: currentFeature.coordinates,
+          zoom: MAP_FLYTO_ZOOM,
+        });
+      }
+
+      function createPopUp(currentFeature) {
+        const popUps = document.getElementsByClassName('mapboxgl-popup');
+        /** Check if there is already a popup on the map and if so, remove it */
+        if (popUps[0]) popUps[0].remove();
+
+// Create popup
+        const popup = new mapboxgl.Popup({ closeOnClick: true })
+          .setLngLat(currentFeature.coordinates)
+          .setHTML(
+            `<h3>${currentFeature.name}</h3>
+            <h4>"${currentFeature.meaning}"</h4>
+            <p>Height: ${currentFeature.height} m<br>
+            ${currentFeature.region}
+            </p>`
+          )
+          .addTo(map);
+        const closeBtn = document.querySelector('.mapboxgl-popup-close-button');
+
+        closeBtn.addEventListener('click', () =>
+        
+          map.flyTo({
+            //center: MAP_CENTER,
+            //zoom: MAP_FLYTO_ZOOM_OUT,
+            //speed: MAP_FLYOUT_SPEED,
+          })
+        );
+      }
+    }
+  } catch (err) {
+    console.error(`${err} 🔥🔥🔥🔥 munroApi ERROR`);
+    throw err;
+  }
+};
+munrosApi();
+
+/////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+///////////////////////////////////
+//////////////////////////////////
+//////////////////////////////////
+
+
 
         //// Poniżej stara wersja bez SORTOWANIA
         // for (let i = 0; i < stores.results.length; i++) {
@@ -267,54 +325,8 @@ Sortowanie poniżej działa. Wystarczy teraz napisać powyższą funkcję i będ
         //     details.innerHTML += `<br> ${stores.results[i].region}`;
         //   }
         // }
-      }
 
-      function flyToStore2(currentFeature) {
-        map.flyTo({
-          center: currentFeature.coordinates,
-          zoom: MAP_FLYTO_ZOOM,
-        });
-      }
-
-      function createPopUp2(currentFeature) {
-        const popUps = document.getElementsByClassName('mapboxgl-popup');
-        /** Check if there is already a popup on the map and if so, remove it */
-        if (popUps[0]) popUps[0].remove();
-
-        const popup = new mapboxgl.Popup({ closeOnClick: false })
-          .setLngLat(currentFeature.coordinates)
-          .setHTML(
-            `<h3>${currentFeature.name}</h3><h4>${currentFeature.height} m</h4><p>${currentFeature.meaning}</p>`
-          )
-          .addTo(map);
-        const closeBtn = document.querySelector('.mapboxgl-popup-close-button');
-
-        closeBtn.addEventListener('click', () =>
-          map.flyTo({
-            //center: MAP_CENTER,
-            //zoom: MAP_FLYTO_ZOOM_OUT,
-            //speed: MAP_FLYOUT_SPEED,
-          })
-        );
-      }
-    }
-  } catch (err) {
-    console.error(`${err} 🔥🔥🔥🔥 munroApi ERROR`);
-    throw err;
-  }
-};
-munrosApi();
-
-/////////////////////////////////////////
-////////////////////////////////////////
-////////////////////////////////////////
-/////////////////////////////////////////
-////////////////////////////////////////
-////////////////////////////////////////
-///////////////////////////////////
-//////////////////////////////////
-//////////////////////////////////
-
+        
 /////////////////////  ORIGINALS /////////////////////
 
 // function addMarkers() {

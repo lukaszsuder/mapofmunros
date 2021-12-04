@@ -59740,20 +59740,20 @@ var munrosList2 = {
   results: []
 }; // Get spinner and spinner background
 
-var testSpinner = document.querySelector('.spinner');
-var testSpinnerBg = document.querySelector('.spinner-bg');
+var spinner = document.querySelector('.spinner');
+var spinnerBg = document.querySelector('.spinner-bg');
 
 var munrosApi = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-    var fetchUrl, results, data, createId, map, stores, addMarkers2, buildLocationList2, flyToStore2, createPopUp2;
+    var fetchUrl, results, data, createId, map, stores, addMarkers2, buildLocationList2, flyToStore, createPopUp;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
             // Spinner ADD
-            testSpinner.classList.add('spinner-show');
-            testSpinnerBg.classList.add('spinner-background');
+            spinner.classList.add('spinner-show');
+            spinnerBg.classList.add('spinner-background');
             fetchUrl = fetch('https://munroapi.herokuapp.com/munros');
             _context.next = 6;
             return fetchUrl;
@@ -59769,14 +59769,15 @@ var munrosApi = /*#__PURE__*/function () {
             return _context.abrupt("return");
 
           case 11:
-            createPopUp2 = function _createPopUp(currentFeature) {
+            createPopUp = function _createPopUp(currentFeature) {
               var popUps = document.getElementsByClassName('mapboxgl-popup');
               /** Check if there is already a popup on the map and if so, remove it */
 
-              if (popUps[0]) popUps[0].remove();
+              if (popUps[0]) popUps[0].remove(); // Create popup
+
               var popup = new _mapboxGl.default.Popup({
-                closeOnClick: false
-              }).setLngLat(currentFeature.coordinates).setHTML("<h3>".concat(currentFeature.name, "</h3><h4>").concat(currentFeature.height, " m</h4><p>").concat(currentFeature.meaning, "</p>")).addTo(map);
+                closeOnClick: true
+              }).setLngLat(currentFeature.coordinates).setHTML("<h3>".concat(currentFeature.name, "</h3>\n            <h4>\"").concat(currentFeature.meaning, "\"</h4>\n            <p>Height: ").concat(currentFeature.height, " m<br>\n            ").concat(currentFeature.region, "\n            </p>")).addTo(map);
               var closeBtn = document.querySelector('.mapboxgl-popup-close-button');
               closeBtn.addEventListener('click', function () {
                 return map.flyTo({//center: MAP_CENTER,
@@ -59786,7 +59787,7 @@ var munrosApi = /*#__PURE__*/function () {
               });
             };
 
-            flyToStore2 = function _flyToStore(currentFeature) {
+            flyToStore = function _flyToStore(currentFeature) {
               map.flyTo({
                 center: currentFeature.coordinates,
                 zoom: _config.MAP_FLYTO_ZOOM
@@ -59844,8 +59845,8 @@ var munrosApi = /*#__PURE__*/function () {
                       var feature = _step2.value;
 
                       if (this.id === "link-".concat(feature.id)) {
-                        flyToStore2(feature);
-                        createPopUp2(feature);
+                        flyToStore(feature);
+                        createPopUp(feature);
                       }
                     }
                   } catch (err) {
@@ -59871,40 +59872,7 @@ var munrosApi = /*#__PURE__*/function () {
                 if (sortedArray[i].region) {
                   details.innerHTML += "- ".concat(sortedArray[i].region);
                 }
-              } //// Poniżej stara wersja bez SORTOWANIA
-              // for (let i = 0; i < stores.results.length; i++) {
-              //   const listings = document.getElementById('listings');
-              //   const listing = listings.appendChild(document.createElement('div'));
-              //   /* Assign the `item` class to each listing for styling. */
-              //   listing.className = 'item';
-              //   listing.id = `listing-${stores.results[i].id}`;
-              //   const link = listing.appendChild(document.createElement('a'));
-              //   link.href = '#';
-              //   link.className = 'title';
-              //   link.id = `link-${stores.results[i].id}`;
-              //   link.innerHTML = `${stores.results[i].name.slice(0, 20)} `;
-              //   //Event listner when someone click on map or click
-              //   link.addEventListener('click', function () {
-              //     for (const feature of stores.results) {
-              //       if (this.id === `link-${feature.id}`) {
-              //         flyToStore2(feature);
-              //         createPopUp2(feature);
-              //       }
-              //     }
-              //     const activeItem = document.getElementsByClassName('active');
-              //     if (activeItem[0]) {
-              //       activeItem[0].classList.remove('active');
-              //     }
-              //     this.parentNode.classList.add('active');
-              //   });
-              //   /* Add details to the individual listing. */
-              //   const details = listing.appendChild(document.createElement('div'));
-              //   details.innerHTML = `${stores.results[i].height} m`;
-              //   if (stores.results[i].region) {
-              //     details.innerHTML += `<br> ${stores.results[i].region}`;
-              //   }
-              // }
-
+              }
             };
 
             addMarkers2 = function _addMarkers(munros) {
@@ -59926,10 +59894,10 @@ var munrosApi = /*#__PURE__*/function () {
                   el.className = 'marker';
                   el.addEventListener('click', function (e) {
                     /* Fly to the point */
-                    flyToStore2(marker);
+                    flyToStore(marker);
                     /* Close all other popups and display popup for clicked store */
 
-                    createPopUp2(marker);
+                    createPopUp(marker);
                     /* Highlight listing in sidebar */
 
                     var activeItem = document.getElementsByClassName('active');
@@ -59963,8 +59931,8 @@ var munrosApi = /*#__PURE__*/function () {
             };
 
             // Spinner REMOVE
-            testSpinner.classList.remove('spinner-show');
-            testSpinnerBg.classList.remove('spinner-background');
+            spinner.classList.remove('spinner-show');
+            spinnerBg.classList.remove('spinner-background');
             _context.next = 19;
             return results.json();
 
@@ -60057,6 +60025,39 @@ munrosApi(); /////////////////////////////////////////
 ///////////////////////////////////
 //////////////////////////////////
 //////////////////////////////////
+//// Poniżej stara wersja bez SORTOWANIA
+// for (let i = 0; i < stores.results.length; i++) {
+//   const listings = document.getElementById('listings');
+//   const listing = listings.appendChild(document.createElement('div'));
+//   /* Assign the `item` class to each listing for styling. */
+//   listing.className = 'item';
+//   listing.id = `listing-${stores.results[i].id}`;
+//   const link = listing.appendChild(document.createElement('a'));
+//   link.href = '#';
+//   link.className = 'title';
+//   link.id = `link-${stores.results[i].id}`;
+//   link.innerHTML = `${stores.results[i].name.slice(0, 20)} `;
+//   //Event listner when someone click on map or click
+//   link.addEventListener('click', function () {
+//     for (const feature of stores.results) {
+//       if (this.id === `link-${feature.id}`) {
+//         flyToStore2(feature);
+//         createPopUp2(feature);
+//       }
+//     }
+//     const activeItem = document.getElementsByClassName('active');
+//     if (activeItem[0]) {
+//       activeItem[0].classList.remove('active');
+//     }
+//     this.parentNode.classList.add('active');
+//   });
+//   /* Add details to the individual listing. */
+//   const details = listing.appendChild(document.createElement('div'));
+//   details.innerHTML = `${stores.results[i].height} m`;
+//   if (stores.results[i].region) {
+//     details.innerHTML += `<br> ${stores.results[i].region}`;
+//   }
+// }
 /////////////////////  ORIGINALS /////////////////////
 // function addMarkers() {
 //   /* For each feature in the GeoJSON object above: */
@@ -60188,7 +60189,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57295" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62488" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,13 +1,31 @@
+/*
+0 -600px:      Phone
+600-900px:     Tablet portrait
+900-1200px:    Tablet landscape
+[1200 - 1800] is where our normal styles apply.
+1800px + :     Big desktop
+
+$breakpoint argument choices
+-phone
+-tab-port
+-tab-land
+-big-desktop
+
+1em = 16px;
+
+600px / 16px = 37.5em;
+900px / 16px = 56.25em
+1200px / 16px = 75em
+1800px / 16px =112.5em
+
+ORDER: Base + typography > general layout + grid >page layout > components
+*/
 html {
   font-size: 62.5%; }
 
 body {
   box-sizing: border-box;
   padding: 3rem; }
-
-.container {
-  margin: 0;
-  padding: 0; }
 
 h1 {
   font-size: 22px;
@@ -18,49 +36,18 @@ h1 {
 a {
   text-decoration: none; }
 
-a:hover {
-  color: #101010; }
-
 .sidebar__listing__describe {
   font-size: 1.2rem; }
+
+ul {
+  list-style: none; }
 
 .map {
   position: absolute;
   bottom: 0;
-  left: 20%;
-  width: 80%;
-  height: 100vh; }
-
-/* Marker tweaks */
-.mapboxgl-popup-close-button {
-  display: visible; }
-
-.mapboxgl-popup-content {
-  font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
-  padding: 0;
-  width: 250px; }
-
-.mapboxgl-popup-content h3 {
-  background: #8b9115;
-  color: #fff;
-  margin: 0;
-  padding: 10px;
-  border-radius: 3px 3px 0 0;
-  font-weight: 700; }
-
-.mapboxgl-popup-content h4 {
-  margin: 0;
-  padding: 10px;
-  font-weight: 400; }
-
-.mapboxgl-popup-content div {
-  padding: 10px; }
-
-.mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
-  margin-top: 15px; }
-
-.mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
-  border-bottom-color: #91c949; }
+  width: 100%;
+  height: 100vh;
+  grid-area: map; }
 
 .marker {
   border: none;
@@ -68,6 +55,46 @@ a:hover {
   height: 56px;
   width: 56px;
   background-image: url(../img/marker.png); }
+
+.mapboxgl-popup-close-button {
+  display: visible;
+  font-size: 3rem;
+  border: none;
+  margin: -3rem;
+  text-decoration: none; }
+
+.mapboxgl-popup-content {
+  font-size: 1.6rem;
+  width: -moz-max-content;
+  /* Firefox */
+  width: -webkit-max-content;
+  /* Chrome */
+  width: max-content; }
+  .mapboxgl-popup-content h3 {
+    background-color: #ceea20ec;
+    color: #333;
+    margin: 1rem;
+    padding: 2rem;
+    border-radius: 3px 3px 0 0;
+    margin-top: -15px;
+    text-align: center; }
+  .mapboxgl-popup-content h4 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-left: 10px;
+    font-style: italic;
+    text-align: center; }
+  .mapboxgl-popup-content p {
+    font-size: 1.2rem;
+    margin-left: 10px; }
+  .mapboxgl-popup-content div {
+    font-weight: 400; }
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+  margin-left: -15px; }
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+  border-bottom-color: black; }
 
 .spinner-background {
   width: 100vw;
@@ -100,33 +127,60 @@ a:hover {
   to {
     transform: rotate(360deg); } }
 
+footer {
+  font-size: 1rem;
+  margin: 1.5rem;
+  color: #a8a8a8; }
+
 header {
-  border-bottom: 0.1rem solid rgba(197, 197, 197, 0.3);
   padding-bottom: 1rem; }
 
+.container {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas: 'sidebar map'; }
+
 .sidebar {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  gap: 0px 0px;
+  grid-area: sidebar;
+  grid-template-areas: 'sidebar__header' 'sidebar__search' 'sidebar__listningse' 'sidebar__sort' 'sidebar__footer';
   position: absolute;
   width: 20%;
-  height: 100vh;
-  top: 0rem;
-  left: 0;
   overflow: hidden;
   border-right: 1px solid rgba(0, 0, 0, 0.3); }
-  .sidebar__logo {
-    padding-top: 1rem; }
+  .sidebar__header {
+    padding-top: 1rem;
+    grid-area: sidebar__header;
+    height: 15vh; }
   .sidebar__search {
-    margin: 1.5rem;
-    padding: 1rem;
-    width: 90%;
-    border: 1px solid #ceea20ec;
-    box-shadow: rgba(0, 0, 0, 0.1) 5px 3px 8px;
-    font-size: 1rem;
-    pointer-events: none; }
+    grid-area: sidebar__search;
+    margin-left: 1rem;
+    width: 100%;
+    height: 10vh; }
+    .sidebar__search--input {
+      padding: 1rem;
+      width: 90%;
+      border: 1px solid #ceea20ec;
+      box-shadow: rgba(0, 0, 0, 0.1) 5px 3px 8px;
+      font-size: 1rem;
+      pointer-events: none; }
+  .sidebar__listings__box {
+    grid-area: sidebar__listningse;
+    height: 60vh; }
   .sidebar__listings {
-    height: 60%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
     overflow: auto;
-    padding-bottom: 10rem;
-    padding-left: 10px;
     border-bottom: 1px solid #a8a8a8; }
     .sidebar__listings__item {
       position: relative;
@@ -141,30 +195,36 @@ header {
         bottom: 0;
         content: ' '; }
       .sidebar__listings__item__title {
-        display: block;
         color: #8b9115f3;
-        font-weight: 700; }
+        font-weight: 700;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical; }
         .sidebar__listings__item__title:hover {
           color: #8b9115f3;
           transition: background-color 0.2s; }
       .sidebar__listings__item.active {
-        background-color: #ceea20ec; }
+        background-color: #ceea20ec;
+        pointer-events: none;
+        padding-left: 2rem; }
+        .sidebar__listings__item.active a {
+          color: #333; }
     .sidebar__listings__item:hover {
       background-color: #f4ffb0ec; }
     .sidebar__listings__item:last-child {
       border-bottom: none; }
   .sidebar__sort {
+    justify-self: center;
+    height: 5vh;
     font-size: 1.6rem;
-    color: #a8a8a8; }
-
-header {
-  border-bottom: 0.1rem solid rgba(197, 197, 197, 0.3);
-  padding-bottom: 1rem; }
-
-footer {
-  font-size: 1rem;
-  margin: 1.5rem;
-  color: #a8a8a8; }
+    color: #a8a8a8;
+    grid-area: sidebar__sort;
+    margin-top: 5vh; }
+  .sidebar__footer {
+    justify-self: center;
+    height: 5vh;
+    grid-area: sidebar__footer; }
 
 ::placeholder {
   color: rgba(0, 0, 0, 0.432);
@@ -172,7 +232,7 @@ footer {
 
 ::-webkit-scrollbar {
   width: 1rem;
-  height: 3px;
+  height: 1rem;
   border-left: 0;
   box-shadow: 0;
   background: rgba(0, 0, 0, 0.1); }
