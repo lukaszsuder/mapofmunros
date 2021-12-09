@@ -20,18 +20,31 @@ $breakpoint argument choices
 
 ORDER: Base + typography > general layout + grid >page layout > components
 */
+@import url("https://fonts.googleapis.com/css2?family=Halant:wght@700&family=Nunito+Sans:ital,wght@0,400;0,700;1,400&display=swap");
 html {
   font-size: 62.5%; }
 
 body {
   box-sizing: border-box;
-  padding: 3rem; }
+  padding: 3rem;
+  font-family: "Nunito Sans", sans-serif; }
 
 h1 {
   font-size: 22px;
   margin: 0;
   font-weight: 400;
   line-height: 20px; }
+
+h3 {
+  font-family: "Nunito Sans", sans-serif;
+  background-color: #ceea20ec;
+  color: #333;
+  margin: 1rem;
+  padding: 2rem;
+  border-radius: 3px 3px 0 0;
+  margin-top: -15px;
+  text-align: center;
+  font-size: 1.6rem; }
 
 a {
   text-decoration: none; }
@@ -70,14 +83,6 @@ ul {
   width: -webkit-max-content;
   /* Chrome */
   width: max-content; }
-  .mapboxgl-popup-content h3 {
-    background-color: #ceea20ec;
-    color: #333;
-    margin: 1rem;
-    padding: 2rem;
-    border-radius: 3px 3px 0 0;
-    margin-top: -15px;
-    text-align: center; }
   .mapboxgl-popup-content h4 {
     font-size: 1.6rem;
     font-weight: 400;
@@ -111,7 +116,7 @@ ul {
   height: 80px;
   z-index: 10;
   border: 2px solid #f3f3f3;
-  border-top: 3px solid #f25a41;
+  border-top: 3px solid #a3be15fe;
   border-radius: 100%;
   position: absolute;
   top: 0;
@@ -195,6 +200,8 @@ header {
         bottom: 0;
         content: ' '; }
       .sidebar__listings__item__title {
+        font-family: "Nunito Sans", sans-serif;
+        font-size: 1.6rem;
         color: #8b9115f3;
         font-weight: 700;
         overflow: hidden;
@@ -217,10 +224,27 @@ header {
   .sidebar__sort {
     justify-self: center;
     height: 5vh;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: #a8a8a8;
     grid-area: sidebar__sort;
-    margin-top: 5vh; }
+    margin-top: 5vh;
+    font-family: "Nunito Sans", sans-serif; }
+    .sidebar__sort__list {
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0; }
+    .sidebar__sort--link {
+      cursor: pointer;
+      color: #8b9115f3;
+      font-weight: 700; }
+      .sidebar__sort--link:hover {
+        color: #a3be15fe; }
+      .sidebar__sort--link--active {
+        color: #000;
+        cursor: default; }
+        .sidebar__sort--link--active:hover {
+          color: #000; }
   .sidebar__footer {
     justify-self: center;
     height: 5vh;

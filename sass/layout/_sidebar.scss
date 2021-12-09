@@ -51,12 +51,6 @@
     }
   }
 
-  &__listing{
-
-    &__describe{
-      
-    }
-  }
   &__listings__box {
     grid-area: sidebar__listningse;
     height: 60vh;
@@ -67,8 +61,6 @@
     margin: 0;
     height: 100%;
     overflow: auto;
-    //padding-bottom: 10rem;
-
     border-bottom: 1px solid $color-grey-light-2;
 
     &__item {
@@ -87,7 +79,9 @@
         content: ' ';
       }
 
-      &__title { 
+      &__title {
+        font-family: $font-title;
+        font-size: 1.6rem;
         color: $color-primary-dark;
         font-weight: $font-weight-bold;
         overflow: hidden;
@@ -95,25 +89,21 @@
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
 
-
         &:hover {
           color: $color-primary-dark;
           transition: background-color 0.2s;
-          
         }
-
       }
 
       &.active {
         background-color: $color-primary-light;
         pointer-events: none;
         padding-left: 2rem;
-        
+
         a {
-          color:$color-grey-dark-3;
+          color: $color-grey-dark-3;
         }
       }
-      
     }
 
     &__item:hover {
@@ -125,14 +115,37 @@
     }
   }
 
-  
   &__sort {
     justify-self: center;
     height: 5vh;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: $color-grey-light-2;
     grid-area: sidebar__sort;
     margin-top: 5vh;
+    font-family: $default-font;
+
+    &__list {
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    &--link {
+      cursor: pointer;
+      color: $color-primary-dark;
+      font-weight: $font-weight-bold;
+      &:hover {
+        color: $color-primary;
+      }
+      &--active {
+        color: $color-black;
+        cursor: default;
+        &:hover {
+          color: $color-black;
+        }
+      }
+    }
   }
   &__footer {
     justify-self: center;
