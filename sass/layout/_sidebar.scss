@@ -1,12 +1,25 @@
+// SEARCH BAR.
+/*
+.sidebar__search delete visiblity: hidden
+
+
+
+*/
+
 .container {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 32rem auto;
+  @include respond(hide-sidebar) {
+    grid-template-columns: 0 auto;
+  }
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas: 'sidebar map';
+  //width: 100vw;
+  justify-content: stretch;
 }
 
 .sidebar {
@@ -22,12 +35,14 @@
     'sidebar__sort'
     'sidebar__footer';
 
-  position: absolute;
-  width: 20%;
-  // height: 80%;
+  z-index: 10;
   overflow: hidden;
   //box-shadow: rgba(0, 0, 0, 0.5) 0px 13px 18px;
   border-right: 1px solid rgba(0, 0, 0, 0.3);
+
+  @include respond(hide-sidebar) {
+    visibility: hidden;
+  }
 
   &__header {
     padding-top: 1rem;
@@ -36,10 +51,11 @@
   }
 
   &__search {
+    visibility: hidden;
     grid-area: sidebar__search;
     margin-left: 1rem;
-    width: 100%;
-    height: 10vh;
+    // width: 100%;
+    //height: 10vh;
 
     &--input {
       padding: 1rem;
@@ -61,7 +77,8 @@
     margin: 0;
     height: 100%;
     overflow: auto;
-    border-bottom: 1px solid $color-grey-light-2;
+    border-top: 1px solid $color-grey;
+    border-bottom: 1px solid $color-grey;
 
     &__item {
       position: relative;
@@ -170,6 +187,7 @@
 
 ::-webkit-scrollbar-track {
   background: none;
+  width: 30px;
 }
 
 ::-webkit-scrollbar-thumb {

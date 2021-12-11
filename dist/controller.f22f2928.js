@@ -40455,6 +40455,12 @@ define(String.prototype, "padRight", "".padEnd);
   [][key] && define(Array, key, Function.call.bind([][key]));
 });
 },{"core-js/shim":"node_modules/babel-polyfill/node_modules/core-js/shim.js","regenerator-runtime/runtime":"node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js","core-js/fn/regexp/escape":"node_modules/babel-polyfill/node_modules/core-js/fn/regexp/escape.js"}],"js/controller.js":[function(require,module,exports) {
+// DO ZROBIENIA
+
+/*
+Gdy klikne na mape to scroolbar ustawia się w tym samym miejscu.
+List się podswietla tylko jak  ustawić scrolowanie na dany PublicKeyCredential. Na srodek listy
+*/
 'use strict'; // USE AS SCRIPT.JS - draft version. LATER WILL BE CONTROLLER.JS
 //import { munrosList } from './munroslist.js';
 
@@ -40552,7 +40558,11 @@ function addMarkers(munrosList) {
         }
 
         var listing = document.getElementById("listing-".concat(marker.id));
-        listing.classList.add('active');
+        listing.classList.add('active'); // Set scrollbar in the centre when clicked
+
+        listing.scrollIntoView({
+          block: 'center'
+        });
       });
       new _mapboxGl.default.Marker(el, {
         offset: [0, -23]
@@ -41031,7 +41041,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58323" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51594" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,3 +1,8 @@
+// DO ZROBIENIA
+/*
+Gdy klikne na mape to scroolbar ustawia się w tym samym miejscu.
+List się podswietla tylko jak  ustawić scrolowanie na dany PublicKeyCredential. Na srodek listy
+*/
 'use strict';
 // USE AS SCRIPT.JS - draft version. LATER WILL BE CONTROLLER.JS
 
@@ -93,6 +98,11 @@ function addMarkers(munrosList) {
       }
       const listing = document.getElementById(`listing-${marker.id}`);
       listing.classList.add('active');
+
+      // Set scrollbar in the centre when clicked
+      listing.scrollIntoView({
+        block: 'center',
+      });
     });
 
     new mapboxgl.Marker(el, { offset: [0, -23] })

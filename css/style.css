@@ -1,6 +1,7 @@
 /*
-0 -600px:      Phone
-600-900px:     Tablet portrait
+
+0 - 700px:      Phone (standard is 0 - 600)
+700-900px:     Tablet portrait
 900-1200px:    Tablet landscape
 [1200 - 1800] is where our normal styles apply.
 1800px + :     Big desktop
@@ -13,10 +14,11 @@ $breakpoint argument choices
 
 1em = 16px;
 
-600px / 16px = 37.5em;
-900px / 16px = 56.25em
-1200px / 16px = 75em
-1800px / 16px =112.5em
+600px / 16px = 37.5em; (phone)
+700px / 16px = 43.75em (hide-sidebar)
+900px / 16px = 56.25em (tab-port)
+1200px / 16px = 75em  (tab-land)
+1800px / 16px =112.5em (big-desktop)
 
 ORDER: Base + typography > general layout + grid >page layout > components
 */
@@ -56,7 +58,6 @@ ul {
   list-style: none; }
 
 .map {
-  position: absolute;
   bottom: 0;
   width: 100%;
   height: 100vh;
@@ -140,15 +141,25 @@ footer {
 header {
   padding-bottom: 1rem; }
 
+/*
+.sidebar__search delete visiblity: hidden
+
+
+
+*/
 .container {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 32rem auto;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
-  grid-template-areas: 'sidebar map'; }
+  grid-template-areas: 'sidebar map';
+  justify-content: stretch; }
+  @media only screen and (max-width: 43.75em) {
+    .container {
+      grid-template-columns: 0 auto; } }
 
 .sidebar {
   display: grid;
@@ -157,19 +168,20 @@ header {
   gap: 0px 0px;
   grid-area: sidebar;
   grid-template-areas: 'sidebar__header' 'sidebar__search' 'sidebar__listningse' 'sidebar__sort' 'sidebar__footer';
-  position: absolute;
-  width: 20%;
+  z-index: 10;
   overflow: hidden;
   border-right: 1px solid rgba(0, 0, 0, 0.3); }
+  @media only screen and (max-width: 43.75em) {
+    .sidebar {
+      visibility: hidden; } }
   .sidebar__header {
     padding-top: 1rem;
     grid-area: sidebar__header;
     height: 15vh; }
   .sidebar__search {
+    visibility: hidden;
     grid-area: sidebar__search;
-    margin-left: 1rem;
-    width: 100%;
-    height: 10vh; }
+    margin-left: 1rem; }
     .sidebar__search--input {
       padding: 1rem;
       width: 90%;
@@ -186,7 +198,8 @@ header {
     margin: 0;
     height: 100%;
     overflow: auto;
-    border-bottom: 1px solid #a8a8a8; }
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee; }
     .sidebar__listings__item {
       position: relative;
       border-bottom: 1px solid #eee;
@@ -262,7 +275,8 @@ header {
   background: rgba(0, 0, 0, 0.1); }
 
 ::-webkit-scrollbar-track {
-  background: none; }
+  background: none;
+  width: 30px; }
 
 ::-webkit-scrollbar-thumb {
   background: #8b9115f3;
