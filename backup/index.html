@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <!--<link rel="shortcut icon" type="image/png" href="img/favicon.png" />-->
+    <title>Map of Munros</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="sidebar__header">
+          <header>
+            <figure>
+              <img src="./img/mm_logo.png" alt="Logo" class="logo" />
+            </figure>
+          </header>
+        </div>
+
+        <!--  IMPORTED SEARCH -->
+
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+          <symbol
+            xmlns="http://www.w3.org/2000/svg"
+            id="sbx-icon-search-7"
+            viewBox="0 0 40 42"
+          >
+            <path
+              d="M16.85 33.702c9.307 0 16.852-7.545 16.852-16.85C33.702 7.543 26.157 0 16.852 0 7.543 0 0 7.544 0 16.85c0 9.307 7.544 16.852 16.85 16.852zm0-2.81c7.756 0 14.043-6.286 14.043-14.04 0-7.757-6.287-14.044-14.042-14.044S2.81 9.095 2.81 16.85c0 7.756 6.287 14.043 14.043 14.043zm11.235 2.288l3.97-3.972L40 37.152l-3.972 3.97-7.943-7.942z"
+              fill-rule="evenodd"
+            />
+          </symbol>
+          <symbol
+            xmlns="http://www.w3.org/2000/svg"
+            id="sbx-icon-clear-5"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10 20c5.523 0 10-4.477 10-10S15.523 0 10 0 0 4.477 0 10s4.477 10 10 10zm1.35-10.123l3.567 3.568-1.225 1.226-3.57-3.568-3.567 3.57-1.226-1.227 3.568-3.568-3.57-3.57 1.227-1.224 3.568 3.568 3.57-3.567 1.224 1.225-3.568 3.57zM10 18.272c4.568 0 8.272-3.704 8.272-8.272S14.568 1.728 10 1.728 1.728 5.432 1.728 10 5.432 18.272 10 18.272z"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </svg>
+
+        <form
+          novalidate="novalidate"
+          onsubmit="return false;"
+          class="sidebar__search"
+        >
+          <input
+            type="search"
+            name="search"
+            placeholder="Search "
+            autocomplete="off"
+            required="required"
+            class="sidebar__search__input"
+            id="munroSearch"
+          />
+          <button type="submit" title="Submit" class="sidebar__search__submit">
+            <svg role="img" aria-label="Search">
+              <use xlink:href="#sbx-icon-search-7"></use>
+            </svg>
+          </button>
+          <button
+            type="reset"
+            title="Clear the search query."
+            class="sidebar__search__reset"
+          >
+            <svg role="img" aria-label="Reset">
+              <use xlink:href="#sbx-icon-clear-5"></use>
+            </svg>
+          </button>
+
+          <span id="no-results" class="sidebar__search__no-results"></span>
+        </form>
+
+        <div class="sidebar__listings__box">
+          <ul class="sidebar__listings" id="sidebar__listings"></ul>
+        </div>
+        <div class="sidebar__sort">
+          <ul class="sidebar__sort__list">
+            <li>Sort by:</li>
+            <li>
+              <a href="#" class="sidebar__sort--link" id="name"> NAME </a>
+            </li>
+            <li>
+              <a href="#" class="sidebar__sort--link" id="height"> HEIGHT </a>
+            </li>
+            <li>
+              <a href="#" class="sidebar__sort--link" id="region"> REGION </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar__footer">
+          <footer>
+            Copyrigt
+            <a
+              href="https://www.linkedin.com/in/lukasz-suder-dev/"
+              class="linkedin"
+              >Lukasz Suder</a
+            >
+            2021
+          </footer>
+        </div>
+      </div>
+      <div id="map" class="map"></div>
+      <script defer src="js/controller.js"></script>
+    </div>
+
+    <div class="spinner-bg">
+      <div class="spinner"></div>
+    </div>
+  </body>
+</html>

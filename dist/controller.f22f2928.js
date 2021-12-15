@@ -40484,7 +40484,7 @@ require('babel-polyfill');
 
 var munrosList = {
   results: []
-}; // LIBRARY
+}; // Selectors LIBRARY
 
 var munroSearch = document.getElementById('munroSearch'); // SPINNER
 
@@ -40528,8 +40528,7 @@ var renderMap = function renderMap() {
       id: 'hillshading',
       source: 'dem',
       type: 'hillshade'
-    }, 'waterway-river-canal-shadow'); //addMarkers(munrosList);
-    //buildLocationList(munrosList);
+    }, 'waterway-river-canal-shadow');
   });
 };
 
@@ -40595,22 +40594,18 @@ var renderList = function renderList(sort) {
   }
 
   var sortedArray = '';
-  var egoto = document.getElementById('no-results');
-  var blockInput = document.getElementById('munroSearch');
+  var noResults = document.getElementById('no-results');
 
   if (list) {
     sortedArray = list;
-    egoto.innerHTML = '';
-    blockInput.classList.remove('no-results');
+    noResults.innerHTML = '';
 
     if (list.length === 0) {
-      blockInput.classList.add('no-results');
-      egoto.innerHTML = "Sorry. We couldn't find any matches";
+      noResults.innerHTML = "Sorry. We couldn't find any matches";
     }
   } else {
     sortedArray = munrosList.results.sortBy(sort);
-    blockInput.classList.remove('no-results');
-    egoto.innerHTML = '';
+    noResults.innerHTML = '';
   }
 
   var listings = document.getElementById('sidebar__listings');
@@ -40676,8 +40671,8 @@ Array.prototype.sortBy = function (p) {
 }; // Sort menu
 
 
-var getSort = document.querySelector('.sidebar__sort__list');
-getSort.addEventListener('click', function (e) {
+var sortBtn = document.querySelector('.sidebar__sort__list');
+sortBtn.addEventListener('click', function (e) {
   e.stopPropagation();
   e.preventDefault();
   var activeItem = document.getElementsByClassName('sidebar__sort--link--active');
@@ -40686,8 +40681,8 @@ getSort.addEventListener('click', function (e) {
     activeItem[0].classList.remove('sidebar__sort--link--active');
   }
 
-  var clicked = document.getElementById(e.target.id);
-  clicked.classList.add('sidebar__sort--link--active');
+  var sortBtnClicked = document.getElementById(e.target.id);
+  sortBtnClicked.classList.add('sidebar__sort--link--active');
   renderList(e.target.id);
 }); // SEARCH
 
@@ -40833,7 +40828,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56089" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59304" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

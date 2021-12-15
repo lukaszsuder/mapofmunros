@@ -25,7 +25,7 @@ const munrosList = {
   results: [],
 };
 
-// LIBRARY
+// Selectors LIBRARY
 const munroSearch = document.getElementById('munroSearch');
 
 // SPINNER
@@ -77,8 +77,7 @@ const renderMap = function () {
       'waterway-river-canal-shadow'
     );
 
-    //addMarkers(munrosList);
-    //buildLocationList(munrosList);
+  
   });
 };
 
@@ -124,23 +123,22 @@ const renderList = function (sort, list = false) {
   if (sort === 'height') {
     sort = '-height';
   }
+
+
   let sortedArray = '';
-  const egoto = document.getElementById('no-results');
-  const blockInput = document.getElementById('munroSearch');
+  const noResults = document.getElementById('no-results');
   if (list) {
     sortedArray = list;
-    egoto.innerHTML = '';
-    blockInput.classList.remove('no-results');
+    noResults.innerHTML = '';
+   
     if (list.length === 0) {
-      blockInput.classList.add('no-results');
-      egoto.innerHTML = `Sorry. We couldn't find any matches`;
+      noResults.innerHTML = `Sorry. We couldn't find any matches`;
     }
   } else {
     sortedArray = munrosList.results.sortBy(sort);
-
-    blockInput.classList.remove('no-results');
-    egoto.innerHTML = '';
+    noResults.innerHTML = '';
   }
+
   const listings = document.getElementById('sidebar__listings');
 
   listings.innerHTML = '';
@@ -187,6 +185,7 @@ const renderList = function (sort, list = false) {
   }
 };
 
+
 //Sorting function
 Array.prototype.sortBy = function (p) {
   return this.slice(0).sort(function (a, b) {
@@ -194,9 +193,10 @@ Array.prototype.sortBy = function (p) {
   });
 };
 
+
 // Sort menu
-const getSort = document.querySelector('.sidebar__sort__list');
-getSort.addEventListener('click', function (e) {
+const sortBtn = document.querySelector('.sidebar__sort__list');
+sortBtn.addEventListener('click', function (e) {
   e.stopPropagation();
   e.preventDefault();
   const activeItem = document.getElementsByClassName(
@@ -207,8 +207,8 @@ getSort.addEventListener('click', function (e) {
     activeItem[0].classList.remove('sidebar__sort--link--active');
   }
 
-  const clicked = document.getElementById(e.target.id);
-  clicked.classList.add('sidebar__sort--link--active');
+  const sortBtnClicked = document.getElementById(e.target.id);
+  sortBtnClicked.classList.add('sidebar__sort--link--active');
 
   renderList(e.target.id);
 });

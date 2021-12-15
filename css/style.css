@@ -26,10 +26,17 @@ ORDER: Base + typography > general layout + grid >page layout > components
 html {
   font-size: 62.5%; }
 
+* {
+  box-sizing: border-box; }
+
 body {
   box-sizing: border-box;
   padding: 3rem;
-  font-family: "Nunito Sans", sans-serif; }
+  font-family: "Nunito Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6; }
 
 h1 {
   font-size: 2.2rem;
@@ -108,8 +115,8 @@ ul {
 .marker {
   border: none;
   cursor: pointer;
-  height: 56px;
-  width: 56px;
+  height: 5.6rem;
+  width: 5.6rem;
   background-image: url(../img/marker.png); }
 
 .mapboxgl-popup-close-button {
@@ -129,20 +136,20 @@ ul {
   .mapboxgl-popup-content h4 {
     font-size: 1.6rem;
     font-weight: 400;
-    margin-left: 10px;
+    margin-left: 1rem;
     font-style: italic;
     text-align: center; }
   .mapboxgl-popup-content p {
     font-size: 1.2rem;
-    margin-left: 10px; }
+    margin-left: 1rem; }
   .mapboxgl-popup-content div {
     font-weight: 400; }
 
 .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
-  margin-left: -15px; }
+  margin-left: -1.5rem; }
 
 .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
-  border-bottom-color: black; }
+  border-bottom-color: #000; }
 
 .sidebar__search {
   display: inline-block;
@@ -274,7 +281,6 @@ ul {
 
 .sidebar__sort {
   justify-self: center;
-  height: 5vh;
   font-size: 1.4rem;
   color: #a8a8a8;
   margin-top: 5vh;
@@ -302,13 +308,13 @@ ul {
   top: 0;
   left: 0;
   z-index: 9;
-  background-color: white;
+  background-color: #fff;
   position: absolute; }
 
 .spinner-show {
   visibility: visible;
-  width: 80px;
-  height: 80px;
+  width: 8rem;
+  height: 8rem;
   z-index: 10;
   border: 2px solid #f3f3f3;
   border-top: 3px solid #a3be15fe;
@@ -382,16 +388,6 @@ header {
 ::-webkit-scrollbar-thumb {
   background: #8b9115f3;
   border-radius: 0; }
-
-* {
-  box-sizing: border-box; }
-
-body {
-  color: #404040;
-  font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased; }
 
 .container {
   margin: 0;

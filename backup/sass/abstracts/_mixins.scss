@@ -1,0 +1,75 @@
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// MEDIA QUERY MANAGER
+/*
+
+0 - 700px:      Phone (standard is 0 - 600)
+700-900px:     Tablet portrait
+900-1200px:    Tablet landscape
+[1200 - 1800] is where our normal styles apply.
+1800px + :     Big desktop
+
+$breakpoint argument choices
+-phone
+-tab-port
+-tab-land
+-big-desktop
+
+1em = 16px;
+
+600px / 16px = 37.5em; (phone)
+700px / 16px = 43.75em (hide-sidebar)
+900px / 16px = 56.25em (tab-port)
+1200px / 16px = 75em  (tab-land)
+1800px / 16px =112.5em (big-desktop)
+
+ORDER: Base + typography > general layout + grid >page layout > components
+*/
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      //600px
+      @content;
+    }
+  }
+
+  @if $breakpoint == hide-sidebar {
+    @media only screen and (max-width: 43.75em) {
+      //700px
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      //900px
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      //1200px
+      @content;
+    }
+  }
+
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      //1800px
+      @content;
+    }
+  }
+}
