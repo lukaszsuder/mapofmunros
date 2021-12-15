@@ -1,0 +1,62 @@
+.sidebar {
+  &__listings {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    overflow: auto;
+    border-top: 1px solid $color-grey;
+    border-bottom: 1px solid $color-grey;
+
+    &__item {
+      position: relative;
+      border-bottom: 1px solid #eee;
+      padding: 1rem;
+      text-decoration: none;
+
+      &--click::after {
+        position: absolute;
+
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        content: ' ';
+      }
+
+      &__title {
+        font-family: $font-title;
+        font-size: 1.6rem;
+        color: $color-primary-dark;
+        font-weight: $font-weight-bold;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+
+        &:hover {
+          color: $color-primary-dark;
+          transition: background-color 0.2s;
+        }
+      }
+
+      &.active {
+        background-color: $color-primary-light;
+        pointer-events: none;
+        padding-left: 2rem;
+
+        a {
+          color: $color-grey-dark-3;
+        }
+      }
+    }
+
+    &__item:hover {
+      background-color: $color-primary-listings-background;
+    }
+
+    &__item:last-child {
+      border-bottom: none;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.sidebar {
+  &__sort {
+    justify-self: center;
+    height: 5vh;
+    font-size: 1.4rem;
+    color: $color-grey-light-2;
+    margin-top: 5vh;
+    font-family: $default-font;
+
+    &__list {
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    &--link {
+      cursor: pointer;
+      color: $color-primary-dark;
+      font-weight: $font-weight-bold;
+      &:hover {
+        color: $color-primary;
+      }
+      &--active {
+        color: $color-black;
+        cursor: default;
+        &:hover {
+          color: $color-black;
+        }
+      }
+    }
+  }
+}
