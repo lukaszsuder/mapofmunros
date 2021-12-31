@@ -40455,8 +40455,8 @@ define(String.prototype, "padRight", "".padEnd);
   [][key] && define(Array, key, Function.call.bind([][key]));
 });
 },{"core-js/shim":"node_modules/babel-polyfill/node_modules/core-js/shim.js","regenerator-runtime/runtime":"node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js","core-js/fn/regexp/escape":"node_modules/babel-polyfill/node_modules/core-js/fn/regexp/escape.js"}],"js/controller.js":[function(require,module,exports) {
-'use strict'; // USE AS SCRIPT.JS - draft version. LATER WILL BE CONTROLLER.JS
-//import { munrosList } from './munroslist.js';
+//Działająca wersja przed wstawianiem wszystkiego w klasy
+'use strict';
 
 var _icons = _interopRequireDefault(require("../img/icons.svg"));
 
@@ -40478,6 +40478,22 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedeclaration(obj, privateMap); privateMap.set(obj, value); }
+
+function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
+
+function _classPrivateFieldSet(receiver, privateMap, value) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "set"); _classApplyDescriptorSet(receiver, descriptor, value); return value; }
+
+function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!privateMap.has(receiver)) { throw new TypeError("attempted to " + action + " private field on non-instance"); } return privateMap.get(receiver); }
+
+function _classApplyDescriptorSet(receiver, descriptor, value) { if (descriptor.set) { descriptor.set.call(receiver, value); } else { if (!descriptor.writable) { throw new TypeError("attempted to set read only private field"); } descriptor.value = value; } }
+
 require('babel-core/register');
 
 require('babel-polyfill');
@@ -40490,6 +40506,132 @@ var munroSearch = document.getElementById('munroSearch'); // SPINNER
 
 var spinnerEl = document.querySelector('.spinner');
 var spinnerBgEl = document.querySelector('.spinner-bg');
+/* Eventlisteners list
+
+el. When click on market on the map and flyToMunro / createPopup (addMarkers)
+------This two could be the same function----------
+link. When click on position on the list and then flyToMunro / createPopup (renderList)
+
+sortBtn. Get value Name/Height/Region and send it to renderList to update MunrosList
+
+searchBar. Get value and then .filter list. Send filtered list to renderList KEYUP
+
+closeBtn. Close popup on the map when clicked  (createPopup)
+------This two could be the same function----------
+reset in search bar. Clear search value and send it to renderList.
+*/
+// Click on marker
+// el.addEventListener('click', e => {
+//   this.flyToMunro(marker);
+//   this.createPopUp(marker);
+//   const activeItem = document.getElementsByClassName('active');
+//   e.stopPropagation();
+//   if (activeItem[0]) {
+//     activeItem[0].classList.remove('active');
+//   }
+//   const listing = document.getElementById(`listing-${marker.id}`);
+//   listing.classList.add('active');
+//   // Set scrollbar in the centre when clicked
+//   listing.scrollIntoView({
+//     block: 'center',
+//   });
+// });
+// click on list
+// link.addEventListener('click', function () {
+//   for (const feature of sortedArray) {
+//     if (this.id === `link-${feature.id}`) {
+//       munroSearch.value = '';
+//       currentMunro.flyToMunro(feature);
+//       currentMunro.createPopUp(feature);
+//     }
+//   }
+//   const activeItem = document.getElementsByClassName('active');
+//   if (activeItem[0]) {
+//     activeItem[0].classList.remove('active');
+//   }
+//   this.parentNode.classList.add('active');
+// });
+
+var _munrosList = /*#__PURE__*/new WeakMap();
+
+var App = /*#__PURE__*/function () {
+  function App() {
+    _classCallCheck(this, App);
+
+    _classPrivateFieldInitSpec(this, _munrosList, {
+      writable: true,
+      value: void 0
+    });
+
+    _classPrivateFieldSet(this, _munrosList, []);
+  } // 1. Show spinner untill _getMap & _getMunrosList received.ok
+
+
+  _createClass(App, [{
+    key: "_showSpinner",
+    value: function _showSpinner() {} // 2. Get data from Mapbox
+
+  }, {
+    key: "_getMap",
+    value: function _getMap() {} // 3. Get data from Munros API
+
+  }, {
+    key: "_getMunrosList",
+    value: function _getMunrosList() {} // 4. Render map
+
+  }, {
+    key: "_showMap",
+    value: function _showMap() {} // 5. Render list
+
+  }, {
+    key: "_showList",
+    value: function _showList() {}
+  }]);
+
+  return App;
+}();
+
+var test = new App();
+
+var Map = /*#__PURE__*/function () {
+  function Map() {
+    _classCallCheck(this, Map);
+  } // 1. Render markers on Map
+
+
+  _createClass(Map, [{
+    key: "_addMarkers",
+    value: function _addMarkers() {} // 2. User click on possition on MunroList. Fly to marker and zoomIn.
+
+  }, {
+    key: "_flyToMunro",
+    value: function _flyToMunro() {} // 3. Get data from clicked position, fing in Munros Array and render popup on the map.
+
+  }, {
+    key: "_createPopUp",
+    value: function _createPopUp() {}
+  }]);
+
+  return Map;
+}();
+
+var List = /*#__PURE__*/function () {
+  function List() {
+    _classCallCheck(this, List);
+  } // 1. Sort the list of munros by Name, Height, Region
+
+
+  _createClass(List, [{
+    key: "_sortMunros",
+    value: function _sortMunros() {} // 2. Search and then update _showList and instant render.
+
+  }, {
+    key: "_searchMunros",
+    value: function _searchMunros() {}
+  }]);
+
+  return List;
+}();
 
 function spinner(para) {
   if (para === 1) {
@@ -40530,65 +40672,135 @@ var renderMap = function renderMap() {
       type: 'hillshade'
     }, 'waterway-river-canal-shadow');
   });
+}; // Tutaj trzeba zrobić, żeby przyjmował koordynaty przekazanae przy kliknieciu do _flyTo
+
+
+var renderMap2 = function renderMap2(cords) {
+  map.addSource('route', {
+    type: 'geojson',
+    data: {
+      type: 'Feature',
+      properties: {},
+      geometry: {
+        type: 'LineString',
+        coordinates: cords
+      }
+    }
+  });
+  map.addLayer({
+    id: 'route',
+    type: 'line',
+    source: 'route',
+    layout: {
+      'line-join': 'round',
+      'line-cap': 'round'
+    },
+    paint: {
+      'line-color': '#888',
+      'line-width': 8
+    }
+  });
 };
 
-function addMarkers(munrosList) {
-  /* For each feature in the GeoJSON object above: */
-  var _iterator = _createForOfIteratorHelper(munrosList.results),
-      _step;
+var DisplayOnMap = /*#__PURE__*/function () {
+  function DisplayOnMap() {
+    _classCallCheck(this, DisplayOnMap);
+  }
 
-  try {
-    var _loop = function _loop() {
-      var marker = _step.value;
+  _createClass(DisplayOnMap, [{
+    key: "flyToMunro",
+    value: function flyToMunro(currentMunro) {
+      map.flyTo({
+        center: currentMunro.coordinates,
+        zoom: _config.MAP_FLYTO_ZOOM
+      });
+    }
+  }, {
+    key: "createPopUp",
+    value: function createPopUp(currentMunro) {
+      var popUps = document.getElementsByClassName('mapboxgl-popup');
+      /** Check if there is already a popup on the map and if so, remove it */
 
-      /* Create a div element for the marker. */
-      var el = document.createElement('div');
-      /* Assign a unique `id` to the marker. */
+      if (popUps[0]) popUps[0].remove(); // Create popup
 
-      el.id = "marker-".concat(marker.id);
-      /* Assign the `marker` class to each marker for styling. */
-
-      el.className = 'marker';
-      el.addEventListener('click', function (e) {
-        /* Fly to the point */
-        flyToStore(marker);
-        /* Close all other popups and display popup for clicked store */
-
-        createPopUp(marker);
-        /* Highlight listing in sidebar */
-
-        var activeItem = document.getElementsByClassName('active');
-        e.stopPropagation();
-
-        if (activeItem[0]) {
-          activeItem[0].classList.remove('active');
-        }
-
-        var listing = document.getElementById("listing-".concat(marker.id));
-        listing.classList.add('active'); // Set scrollbar in the centre when clicked
-
-        listing.scrollIntoView({
-          block: 'center'
+      var popup = new _mapboxGl.default.Popup({
+        closeOnClick: true
+      }).setLngLat(currentMunro.coordinates).setHTML("<h3>".concat(currentMunro.name, "</h3>\n        <h4>\"").concat(currentMunro.meaning, "\"</h4>\n        <p>Height: ").concat(currentMunro.height, " m<br>\n        ").concat(currentMunro.region, "\n        </p>")).addTo(map);
+      var closeBtn = document.querySelector('.mapboxgl-popup-close-button');
+      closeBtn.addEventListener('click', function () {
+        return map.flyTo({//center: MAP_CENTER,
+          //zoom: MAP_FLYTO_ZOOM_OUT,
+          //speed: MAP_FLYOUT_SPEED,
         });
       });
-      new _mapboxGl.default.Marker(el, {
-        offset: [0, -23]
-      }).setLngLat(marker.coordinates).addTo(map);
-    };
-
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      _loop();
     }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
-  }
-}
+  }, {
+    key: "addMarkers",
+    value: function addMarkers(munrosList) {
+      var _this = this;
+
+      var _iterator = _createForOfIteratorHelper(munrosList.results),
+          _step;
+
+      try {
+        var _loop = function _loop() {
+          var marker = _step.value;
+          var el = document.createElement('div');
+          el.id = "marker-".concat(marker.id);
+          el.className = 'marker';
+          el.addEventListener('click', function (e) {
+            _this.flyToMunro(marker);
+
+            _this.createPopUp(marker); // Tutaj są przkazywane coordynaty do renderowania
+
+
+            if (marker.height === 1344) {
+              renderMap2([[-5.0035717839271, 56.796797860234456], [-5.00533131304087, 56.79606345082002], [-5.007220826129469, 56.79638659273442], [-5.0091895675464, 56.796474721864165], [-5.010391197185072, 56.796427719687436]]);
+            }
+
+            var activeItem = document.getElementsByClassName('active');
+            e.stopPropagation();
+
+            if (activeItem[0]) {
+              activeItem[0].classList.remove('active');
+            }
+
+            var listing = document.getElementById("listing-".concat(marker.id));
+            listing.classList.add('active'); // Set scrollbar in the centre when clicked
+
+            listing.scrollIntoView({
+              block: 'center'
+            });
+          });
+          new _mapboxGl.default.Marker(el, {
+            offset: [0, -23]
+          }).setLngLat(marker.coordinates).addTo(map);
+        };
+
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          _loop();
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }
+  }]);
+
+  return DisplayOnMap;
+}();
+
+var currentMunro = new DisplayOnMap();
+
+var DispalyList = function DispalyList() {
+  _classCallCheck(this, DispalyList);
+};
 
 var renderList = function renderList(sort) {
   var list = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
+  // Search and Sort
   if (sort === 'height') {
     sort = '-height';
   }
@@ -40621,7 +40833,7 @@ var renderList = function renderList(sort) {
     link.href = '#';
     link.className = 'sidebar__listings__item__title sidebar__listings__item--click';
     link.id = "link-".concat(sortedArray[i].id);
-    link.innerHTML = "".concat(sortedArray[i].name, " "); //Event listner when someone click on map or click
+    link.innerHTML = "".concat(sortedArray[i].name, " "); //Event listner when someone click on map or click on marker
 
     link.addEventListener('click', function () {
       var _iterator2 = _createForOfIteratorHelper(sortedArray),
@@ -40633,8 +40845,8 @@ var renderList = function renderList(sort) {
 
           if (this.id === "link-".concat(feature.id)) {
             munroSearch.value = '';
-            flyToStore(feature);
-            createPopUp(feature);
+            currentMunro.flyToMunro(feature);
+            currentMunro.createPopUp(feature);
           }
         }
       } catch (err) {
@@ -40704,31 +40916,6 @@ function buildLocationList(munrosList) {
   renderList('id');
 }
 
-function flyToStore(currentMunro) {
-  map.flyTo({
-    center: currentMunro.coordinates,
-    zoom: _config.MAP_FLYTO_ZOOM
-  });
-}
-
-function createPopUp(currentMunro) {
-  var popUps = document.getElementsByClassName('mapboxgl-popup');
-  /** Check if there is already a popup on the map and if so, remove it */
-
-  if (popUps[0]) popUps[0].remove(); // Create popup
-
-  var popup = new _mapboxGl.default.Popup({
-    closeOnClick: true
-  }).setLngLat(currentMunro.coordinates).setHTML("<h3>".concat(currentMunro.name, "</h3>\n      <h4>\"").concat(currentMunro.meaning, "\"</h4>\n      <p>Height: ").concat(currentMunro.height, " m<br>\n      ").concat(currentMunro.region, "\n      </p>")).addTo(map);
-  var closeBtn = document.querySelector('.mapboxgl-popup-close-button');
-  closeBtn.addEventListener('click', function () {
-    return map.flyTo({//center: MAP_CENTER,
-      //zoom: MAP_FLYTO_ZOOM_OUT,
-      //speed: MAP_FLYOUT_SPEED,
-    });
-  });
-}
-
 var munrosApi = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
     var fetchUrl, results, data, createId;
@@ -40774,7 +40961,7 @@ var munrosApi = /*#__PURE__*/function () {
                 region: received.region
               };
             });
-            renderMap(addMarkers(munrosList), buildLocationList(munrosList));
+            renderMap(currentMunro.addMarkers(munrosList), buildLocationList(munrosList));
 
           case 17:
             _context.next = 23;
@@ -40828,7 +41015,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59304" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50076" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
